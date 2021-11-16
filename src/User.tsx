@@ -1,4 +1,3 @@
-import React from 'react'
 import { useQuery } from 'react-apollo'
 import { gql } from 'apollo-boost'
 import { Table } from 'antd'
@@ -20,11 +19,11 @@ const User: () => JSX.Element = () => {
   // at a specified interval
   const { data, loading } = useQuery(
     QUERY_USERS, {
-    pollInterval: 5000 // refetch the result every 5 second
   }
   )
   // should handle loading status
   if (loading) return <p>Loading...</p>
+  if (data === undefined) return <p>Turn on your backend</p>
   const dataSource = data.users.map(({ id, firstName, lastName }: user) => (
     {
       id: id,
